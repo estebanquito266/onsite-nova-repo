@@ -1,0 +1,11 @@
+/backups
+/seeders/dumped_data
+/seeders/*.php
+!/seeders/DatabaseSeeder.php
+!/seeders/EstadoPedidoRespuestosOnsiteSeeder.php
+!/seeders/ParametrosSeeder.php
+!/seeders/PlantillaMailReparaciones.php
+!/seeders/SolicitudesBouchersTiposSeeder.php
+!/seeders/TemplateVisitaSeeder.php
+!/seeders/SolicitudTipoOtrosSeeder.php
+*.sqlite*

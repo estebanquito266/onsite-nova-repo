@@ -1,0 +1,35 @@
+<?php
+
+namespace Acme\Analytics;
+
+use Laravel\Nova\Card;
+
+class Analytics extends Card
+{
+    /**
+     * The width of the card (1/3, 1/2, or full).
+     *
+     * @var string
+     */
+    public $width = '1/3';
+
+       /**
+     * Indicates that the analytics should show current visitors.
+     *
+     * @return $this
+     */
+    public function currentVisitors()
+    {
+        return $this->withMeta(['currentVisitors' => true]);
+    }
+
+    /**
+     * Get the component name for the element.
+     *
+     * @return string
+     */
+    public function component()
+    {
+        return 'analytics';
+    }
+}

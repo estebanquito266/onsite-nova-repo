@@ -1,0 +1,44 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+
+class CreateUsersTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table->unsignedInteger('id', true);
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->rememberToken();
+            $table->timestamps();
+            $table->string('domicilio');
+            $table->string('cuit');
+            $table->string('telefono');
+            $table->softDeletes();
+            $table->unsignedInteger('id_tipo_visibilidad')->default(1)->constrained('tipos_visibilidades');
+            $table->string('foto_perfil')->default('default.jpeg');
+        });
+
+        // \DB::statement("ALTER TABLE users AUTO_INCREMENT = 535");
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('users');
+    }
+}
