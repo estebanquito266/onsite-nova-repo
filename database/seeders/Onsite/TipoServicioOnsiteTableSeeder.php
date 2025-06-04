@@ -1,6 +1,8 @@
 <?php
+namespace Database\Seeders\Onsite;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class TipoServicioOnsiteTableSeeder extends Seeder
 {
