@@ -17,7 +17,7 @@ class CommentTicketOnsite extends Resource
      *
      * @var string
      */
-    public static $model = \App\Models\Onsite\CategoryTicketOnsite::class;
+    public static $model = \App\Models\Onsite\CommentTicketOnsite::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
