@@ -131,7 +131,7 @@ class User extends Resource
             HasMany::make('Perfil Usuario', 'perfiles_usuarios'),
             BelongsToMany::make('Empresa Onsite', 'empresas_onsite'),
             BelongsToMany::make('Sucursal Onsite', 'sucursales_onsite'),
-            BelongsToMany::make('Group Tickets', 'group_tickets'),
+            BelongsTo::make('Group Ticket', 'group_ticket', GroupTicketOnsite::class)->sortable(),
             //BelongsToMany::make('Historiales Estados Onsite', 'historiales_estados_onsite'),
             HasMany::make('HistorialEstadoOnsite', 'historial_estado_onsite'),
             HasMany::make('LocalidadOnsite', 'localidad_onsite'),
