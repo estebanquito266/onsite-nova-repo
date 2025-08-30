@@ -4,7 +4,7 @@ namespace App\Models\Admin;
 
 use App\Models\EmpresaInstaladora\EmpresaInstaladoraOnsite;
 use App\Models\EmpresaInstaladora\EmpresaInstaladoraUser;
-
+use App\Models\Onsite\GroupTicketOnsite;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -142,5 +142,10 @@ class User extends Authenticatable
     public function empresa_instaladora()
     {
         return $this->belongsToMany(EmpresaInstaladoraOnsite::class, 'empresas_instaladoras_users', 'user_id', 'empresa_instaladora_id');
+    }
+
+    public function group_tickets()
+    {
+        return $this->belongsToMany(GroupTicketOnsite::class, 'user_group_ticket', 'user_id', 'group_ticket_id');
     }
 }

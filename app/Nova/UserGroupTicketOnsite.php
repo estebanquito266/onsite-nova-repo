@@ -54,6 +54,7 @@ class UserGroupTicketOnsite extends Resource
      */
     public function fields(Request $request)
     {
+        $companyId = $this->company_id;
         return [
             ID::make('ID', 'id')->sortable(),
             BelongsTo::make('Company', 'company')->sortable(),
