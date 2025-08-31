@@ -17,16 +17,17 @@ class UserGroupTicketOnsite extends Model
         'group_ticket_id',
     ];
 
-    /*protected static function boot()
+    public static function booted()
     {
-        parent::boot();
-
-        static::creating(function ($model) {
-            if (empty($model->company_id) && $model->group_ticket_id) {
-                $model->company_id = GroupTicketOnsite::where('id', $model->group_ticket_id)->value('company_id');
+        static::creating(function ($pivot) {
+            if (!$pivot->company_id && $pivot->group_ticket_id) {
+                $group = GroupTicketOnsite::find($pivot->group_ticket_id);
+                if ($group) {
+                    $pivot->company_id = $group->company_id;
+                }
             }
         });
-    }*/
+    }
 
     public function company()
     {

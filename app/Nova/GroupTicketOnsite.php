@@ -8,7 +8,6 @@ use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\Hidden;
 
 class GroupTicketOnsite extends Resource
 {
@@ -50,29 +49,11 @@ class GroupTicketOnsite extends Resource
      */
     public function fields(Request $request)
     {
-        $urlSegments = explode('/', parse_url($request->getRequestUri(), PHP_URL_PATH));
-        $groupTicketOnsiteId = collect($urlSegments)->filter(fn($seg) => is_numeric($seg))->first();
-
-        $companyId = $this->company_id;
-
-        //$groupTicketOnsiteModel = \App\Models\Onsite\GroupTicketOnsite::find(2);
-
-        $groupTicketOnsiteModel = \App\Models\Onsite\GroupTicketOnsite::find($groupTicketOnsiteId);
-            if($groupTicketOnsiteModel){
-                $companyId = $groupTicketOnsiteModel->company_id;
-            }
-
         return [
             ID::make('ID', 'id')->sortable(),
             BelongsTo::make('Company', 'company')->sortable(),
             Text::make('Name', 'name')->sortable()->required(),
-            BelongsToMany::make('Users')
-            ->fields(function ($request) use($companyId) {
-                return [
-                    Hidden::make('company_id')
-                        ->default(fn() => $companyId),
-                ];
-            }),
+            BelongsToMany::make('Users', 'users'),
         ];
     }
 
