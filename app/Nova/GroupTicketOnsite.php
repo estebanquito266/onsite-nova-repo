@@ -50,10 +50,14 @@ class GroupTicketOnsite extends Resource
      */
     public function fields(Request $request)
     {
+        $urlSegments = explode('/', parse_url($request->getRequestUri(), PHP_URL_PATH));
+        $groupTicketOnsiteId = collect($urlSegments)->filter(fn($seg) => is_numeric($seg))->first();
 
         $companyId = $this->company_id;
 
-        $groupTicketOnsiteModel = \App\Models\Onsite\GroupTicketOnsite::find($request->resourceId);
+        //$groupTicketOnsiteModel = \App\Models\Onsite\GroupTicketOnsite::find(2);
+
+        $groupTicketOnsiteModel = \App\Models\Onsite\GroupTicketOnsite::find($groupTicketOnsiteId);
             if($groupTicketOnsiteModel){
                 $companyId = $groupTicketOnsiteModel->company_id;
             }
