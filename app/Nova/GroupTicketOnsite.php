@@ -53,7 +53,8 @@ class GroupTicketOnsite extends Resource
             ID::make('ID', 'id')->sortable(),
             BelongsTo::make('Company', 'company')->sortable(),
             Text::make('Name', 'name')->sortable()->required(),
-            BelongsToMany::make('Users', 'users'),
+            BelongsToMany::make('Users')
+            ->using(UserGroupTicketOnsite::class),
         ];
     }
 
