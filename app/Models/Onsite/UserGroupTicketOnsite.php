@@ -17,7 +17,7 @@ class UserGroupTicketOnsite extends Model
         'group_ticket_id',
     ];
 
-    protected static function boot()
+    /*protected static function boot()
     {
         parent::boot();
 
@@ -26,7 +26,7 @@ class UserGroupTicketOnsite extends Model
                 $model->company_id = GroupTicketOnsite::where('id', $model->group_ticket_id)->value('company_id');
             }
         });
-    }
+    }*/
 
     public function company()
     {

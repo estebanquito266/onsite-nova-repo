@@ -62,6 +62,16 @@ class UserGroupTicketOnsite extends Resource
         ];
     }
 
+    public static function fill(NovaRequest $request, $model)
+    {
+        $fields = parent::fill($request, $model);
+
+        if (empty($model->company_id) && $request->viaResource === 'group-ticket-onsites' && $request->viaResourceId) {
+            $model->company_id = \App\Models\Onsite\GroupTicketOnsite::where('id', $request->viaResourceId)->value('company_id');
+        }
+
+        return $fields;
+    }
     /**
      * Get the cards available for the request.
      *
