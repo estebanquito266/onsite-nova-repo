@@ -50,21 +50,28 @@ class GroupTicketOnsite extends Resource
      */
     public function fields(Request $request)
     {
+
+        $companyId = $this->company_id;
+
+        if (empty($tipoServicioExtra) && $request->viaResource === 'group-ticket-onsites' && $request->viaResourceId) {
+            $groupTicketOnsiteModel = \App\Models\Onsite\GroupTicketOnsite::find($request->viaResourceId);
+            if($groupTicketOnsiteModel){
+                $companyId = $groupTicketOnsiteModel->company_id;
+            }
+            
+        }
+
         return [
             ID::make('ID', 'id')->sortable(),
             BelongsTo::make('Company', 'company')->sortable(),
             Text::make('Name', 'name')->sortable()->required(),
             BelongsToMany::make('Users')
-    ->fields(function ($request, $relatedModel) {
-        return [
-            Hidden::make('company_id')
-                ->resolveUsing(function () use ($request) {
-                    // $request->resourceId es el ID del GroupTicketOnsite al que estamos adjuntando
-                    $parent = \App\Models\Onsite\GroupTicketOnsite::find($request->resourceId);
-                    return $parent ? $parent->company_id : null;
-                }),
-        ];
-    }),
+            ->fields(function ($request) use($companyId) {
+                return [
+                    Hidden::make('company_id')
+                        ->default(fn() => $companyId),
+                ];
+            }),
         ];
     }
 
