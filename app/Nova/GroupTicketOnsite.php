@@ -53,7 +53,7 @@ class GroupTicketOnsite extends Resource
 
         $companyId = $this->company_id;
 
-        $groupTicketOnsiteModel = \App\Models\Onsite\GroupTicketOnsite::find(2);
+        $groupTicketOnsiteModel = \App\Models\Onsite\GroupTicketOnsite::find($request->resourceId);
             if($groupTicketOnsiteModel){
                 $companyId = $groupTicketOnsiteModel->company_id;
             }
