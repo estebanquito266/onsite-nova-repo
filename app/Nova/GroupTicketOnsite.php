@@ -56,16 +56,18 @@ class GroupTicketOnsite extends Resource
             Text::make('Name', 'name')->sortable()->required(),
             BelongsToMany::make('Users')
             ->fields(function ($request, $relatedModel) {
+                $companyId = null;
+
+                if ($request->resourceId) {
+                    $parent = \App\Models\Onsite\GroupTicketOnsite::find($request->resourceId);
+                    if ($parent) {
+                        $companyId = $parent->company_id;
+                    }
+                }
+
                 return [
                     Hidden::make('company_id')
-                        ->default(function () use ($request, $relatedModel) {
-                            if ($request->resourceId) {
-                                $parent = \App\Models\Onsite\GroupTicketOnsite::find($request->resourceId);
-                                return $parent ? $parent->company_id : null;
-                            }
-
-                            return $request->company_id ?? null;
-                        }),
+                        ->default($companyId),
                 ];
             }),
         ];
