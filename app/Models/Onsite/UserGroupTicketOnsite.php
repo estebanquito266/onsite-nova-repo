@@ -4,9 +4,9 @@ namespace App\Models\Onsite;
 
 use App\Models\Admin\Company;
 use App\Models\Admin\User;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class UserGroupTicketOnsite extends Model
+class UserGroupTicketOnsite extends Pivot
 {
     protected $table   = 'user_group_ticket';
     public $timestamps = false;
@@ -29,18 +29,4 @@ class UserGroupTicketOnsite extends Model
         });
     }
 
-    public function company()
-    {
-        return $this->belongsTo(Company::class, 'company_id');
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function group_ticket()
-    {
-        return $this->belongsTo(GroupTicketOnsite::class, 'group_ticket_id');
-    }
 }
