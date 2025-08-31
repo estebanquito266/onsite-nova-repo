@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Hidden;
 
 class GroupTicketOnsite extends Resource
 {
@@ -53,7 +54,13 @@ class GroupTicketOnsite extends Resource
             ID::make('ID', 'id')->sortable(),
             BelongsTo::make('Company', 'company')->sortable(),
             Text::make('Name', 'name')->sortable()->required(),
-            BelongsToMany::make('Users', 'users'),
+            BelongsToMany::make('Users')
+                ->fields(function ($request) {
+                    return [
+                        Hidden::make('company_id')
+                            ->default(fn() => $this->company_id),
+                    ];
+                }),
         ];
     }
 
