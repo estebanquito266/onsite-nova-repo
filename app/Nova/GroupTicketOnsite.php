@@ -53,13 +53,10 @@ class GroupTicketOnsite extends Resource
 
         $companyId = $this->company_id;
 
-        if (empty($tipoServicioExtra) && $request->viaResource === 'group-ticket-onsites' && $request->viaResourceId) {
-            $groupTicketOnsiteModel = \App\Models\Onsite\GroupTicketOnsite::find($request->viaResourceId);
+        $groupTicketOnsiteModel = \App\Models\Onsite\GroupTicketOnsite::find(2);
             if($groupTicketOnsiteModel){
                 $companyId = $groupTicketOnsiteModel->company_id;
             }
-            
-        }
 
         return [
             ID::make('ID', 'id')->sortable(),
