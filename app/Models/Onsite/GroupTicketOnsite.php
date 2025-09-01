@@ -24,6 +24,8 @@ class GroupTicketOnsite extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'user_group_ticket', 'group_ticket_id', 'user_id')->withPivot(['company_id']);
+        return $this->belongsToMany(User::class, 'user_group_ticket', 'group_ticket_id', 'user_id')
+                    ->using(UserGroupTicketOnsite::class)
+                    ->withPivot(['company_id']);
     }
 }
