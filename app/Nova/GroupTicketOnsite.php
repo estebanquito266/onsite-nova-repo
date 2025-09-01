@@ -54,10 +54,9 @@ class GroupTicketOnsite extends Resource
             BelongsTo::make('Company', 'company')->sortable(),
             Text::make('Name', 'name')->sortable()->required(),
             BelongsToMany::make('Users')
-            ->using(UserGroupTicketOnsite::class)
-            ->fields(function () {
-                return []; // no hace falta mostrar company_id
-            }),
+    ->fields(function () {
+        return []; 
+    }),
         ];
     }
 
