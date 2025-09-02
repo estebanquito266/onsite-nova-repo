@@ -8,6 +8,13 @@ class Company extends Model
 {
     const COMPANY_ALL = 1;
     const DEFAULT = 1;
+    const CHILE       = 4;
+    const COLOMBIA    = 5;
+    const ECUADOR     = 6;
+    const PANAMA      = 7;
+    const URUGUAY     = 8;
+    const MIRGOR      = 10;
+    const ASSURANT    = 11;
 
     protected $fillable = [
         'nombre', 'derivacion_falla_grupo_equipo_default_id', 'operador_default_id', 'color_default_id',

@@ -1,4 +1,5 @@
 <?php
+namespace Database\Seeders\Onsite;
 
 use App\Models\Admin\User;
 use App\Models\Onsite\HistorialEstadoOnsite;
