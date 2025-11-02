@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use App\Models\Onsite\ReasonTicketOnsite;
 use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
@@ -184,6 +185,11 @@ class Company extends Model
     public function motivo_interes_derivacion_default()
     {
         return $this->belongsTo('App\Models\Derivacion\MotivoInteresDerivacion', 'derivacion_motivo_interes_default_id');
+    }
+
+    public function reasons_ticket_onsite()
+    {
+        return $this->hasMany(ReasonTicketOnsite::class, 'company_id');
     }
 
     public function falla_default()
